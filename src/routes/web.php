@@ -31,9 +31,9 @@ Route::get('/dashboard', function (Request $request) {
     $users = Cache::remember('users', 60, function() use($request) {
         return User::all();
     });
-    return $users;
+    // return $users;
     Cache::store('redis')->put('bar', 'baz', 600); // 10 Minutes
-    return Cache::get('bar');
+    
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
