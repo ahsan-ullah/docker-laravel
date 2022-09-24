@@ -86,6 +86,12 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
+                        <Link
+                            href={route('facebook.login')}
+                            className="underline text-sm text-gray-600 hover:text-gray-900"
+                        >
+                            Facebook Login
+                        </Link>
                     <PrimaryButton className="ml-4" processing={processing}>
                         Log in
                     </PrimaryButton>

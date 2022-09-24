@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('facebook-login',[ FacebookController::class , 'provider'])->name('facebook.login');
+Route::get('facebook-callback',[ FacebookController::class , 'handleCallback'])->name('facebook.callback');
 
 Route::get('/dashboard', function (Request $request) {
     $users = Cache::remember('users', 60, function() use($request) {
@@ -38,3 +41,4 @@ Route::get('/dashboard', function (Request $request) {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
